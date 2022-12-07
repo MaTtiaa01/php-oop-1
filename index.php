@@ -14,15 +14,31 @@ class Movie
         $this->link = $link;
     }
 
-    public static function getDiscount($age)
+    public function setDiscount($age)
     {
+        if ($age > 45) {
+            $this->sconto = 20;
+        } else if ($age < 18) {
+            $this->sconto = 50;
+        }
+    }
+
+    public function getDiscount()
+    {
+        return $this->sconto;
     }
 }
 
 
 $avatar = new Movie("Avatar", "lorem ipsum", "www.avatar.com");
-$matrix = new Movie("Matrix", "lorem ipsum 2", "ww.matrix.com");
+$avatar->setDiscount(16);
+$scontoAvatar = $avatar->getDiscount();
+var_dump($scontoAvatar);
 
-echo Movie::getDiscount(40);
-var_dump($avatar);
-var_dump($matrix);
+$matrix = new Movie("Matrix", "lorem ipsum 2", "ww.matrix.com");
+$matrix->setDiscount(70);
+$scontomatrix = $matrix->getDiscount();
+var_dump($scontomatrix);
+
+var_dump($avatar->title);
+var_dump($matrix->title);
